@@ -1,5 +1,10 @@
 <script>
     export default {
+
+        props: {
+            show: Boolean
+        },
+
         data: function()
         {
             return {
@@ -15,7 +20,7 @@
             {
                 axios.post('/products', {productName: this.productName, productPrice: this.productPrice, productQuantity: this.productQuantity})
                     .then(response=>{
-                        this.response.data.product
+                        this.$emit('save',response.data.product)
                     })
             }
         }
@@ -32,11 +37,12 @@
                     </div>
 
                     <div class="card-body">
+                        {{ show }}
                         <input class="form-control" type="text" placeholder="Product Name" name="p_name" v-model="productName">
                         <input class="form-control mt-3 w-50 float-end" type="text" placeholder="Price" name="p_price" v-model="productPrice">
                         <input class="form-control mt-3 w-50 float-start" type="text" placeholder="Quantity" name="p_quantity" v-model="productQuantity">
                         <button @click="$emit('close')" class="btn btn-danger mt-3">Cancel</button>
-                        <button @click="saveMessage(), $emit('save')" class="btn btn-success mt-3 float-end">Save</button>
+                        <button @click="saveMessage(), $emit('close')" class="btn btn-success mt-3 float-end">Save</button>
                     </div>
                 </div>
             </div>
