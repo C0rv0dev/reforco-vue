@@ -18,6 +18,9 @@ const app = createApp({});
 import ShowProductsComponent from './components/ShowProductsComponent.vue';
 app.component('show-products-component', ShowProductsComponent);
 
+import CreateProductsComponent from './components/CreateProductsComponent.vue';
+app.component('create-products-component', CreateProductsComponent);
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
