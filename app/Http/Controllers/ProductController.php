@@ -35,7 +35,7 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function notes(Product $product)
     {
         //
     }
@@ -45,7 +45,13 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $product->name = ucfirst($request->name);
+        $product->price = $request->price;
+        $product->quantity = $request->quantity;
+
+        $product->save();
+
+        return response()->json(compact('product'));
     }
 
     /**

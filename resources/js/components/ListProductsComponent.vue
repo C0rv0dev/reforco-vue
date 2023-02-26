@@ -26,7 +26,7 @@
                             this.list.splice(index, 1)
                         })
                 }
-            }
+            },
         }
     }
 </script>
