@@ -24,3 +24,5 @@ Route::get('/products', [ProductController::class, 'index'])->name('showProducts
 Route::get('/{product}/notes', [ProductController::class, 'notes'])->name('showNotes');
 
 Route::post('/products', [ProductController::class, 'store'])->name('storeProducts');
+
+Route::delete('/products/{product}', [ProductController::class, 'delete'])->name('deleteProduct');

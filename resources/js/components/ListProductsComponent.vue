@@ -1,22 +1,30 @@
 <script>
     export default {
+
+        props: ['products'],
+
         data: function()
         {
             return {
-                productName: '',
-                productPrice: '',
-                productQuantity: ''
+                list: this.products
             }
         },
 
         methods: 
         {
-            saveMessage()
+            storeProduct(product)
             {
-                axios.post('/products', {productName: this.productName, productPrice: this.productPrice, productQuantity: this.productQuantity})
-                    .then(response=>{
-                        this.response.data.product
-                    })
+                this.list.push(product)
+            },
+
+            deleteProduct(product, index)
+            {
+                if(confirm('Are you sure?')){
+                    axios.delete(`/products/${product.id}`)
+                        .then(response=>{
+                            this.list.splice(index, 1)
+                        })
+                }
             }
         }
     }
@@ -25,21 +33,17 @@
 <template>
     <div class="container mt-3">
         <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">
-                        Register a New Product Here
-                    </div>
-
-                    <div class="card-body">
-                        <input class="form-control" type="text" placeholder="Product Name" name="p_name" v-model="productName">
-                        <input class="form-control mt-3 w-50 float-end" type="text" placeholder="Price" name="p_price" v-model="productPrice">
-                        <input class="form-control mt-3 w-50 float-start" type="text" placeholder="Quantity" name="p_quantity" v-model="productQuantity">
-                        <button @click="$emit('close')" class="btn btn-danger mt-3">Cancel</button>
-                        <button @click="saveMessage(), $emit('save')" class="btn btn-success mt-3 float-end">Save</button>
-                    </div>
+                <div v-for="(product, index) in list">
+                    <show-products-component
+                        :product = product
+                        @deleteProduct="deleteProduct(product, index)"
+                    >
+                    </show-products-component>
                 </div>
-            </div>
+            <create-products-component
+                @save="(product)=>storeProduct(product)"
+            >
+            </create-products-component>
         </div>
     </div>
 </template>
