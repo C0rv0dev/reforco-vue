@@ -25,4 +25,5 @@ Route::get('/{product}/notes', [ProductController::class, 'notes'])->name('showN
 
 Route::post('/products', [ProductController::class, 'store'])->name('storeProducts');
 
+Route::put('/products/{product}', [ProductController::class, 'update'])->name('updateProduct');
 Route::delete('/products/{product}', [ProductController::class, 'delete'])->name('deleteProduct');
