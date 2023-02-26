@@ -1,8 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <show-products-component
-        :products = {{ $products->toJson() }}
-    >
-    </show-products-component>
+    <div>
+        <show-products-component
+            :products = {{ $products->toJson() }}
+        >
+        </show-products-component>
+    </div>
+    <create-products-component></create-products-component>
 @endsection

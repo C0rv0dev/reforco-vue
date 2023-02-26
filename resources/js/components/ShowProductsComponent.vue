@@ -4,7 +4,6 @@
 
         data: function()
         {
-            console.log(this.list)
             return {
                 list: this.products,
             }
