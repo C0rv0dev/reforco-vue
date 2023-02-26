@@ -22,7 +22,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $product = Product::create([
-            'name' => $request->productName,
+            'name' => ucfirst($request->productName),
             'price' => $request->productPrice,
             'quantity' => $request->productQuantity
         ]);

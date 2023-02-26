@@ -6,7 +6,8 @@
         data: function()
         {
             return {
-                list: this.products
+                list: this.products,
+                showCreateProduct: false
             }
         },
 
@@ -33,17 +34,24 @@
 <template>
     <div class="container mt-3">
         <div class="row justify-content-center">
-                <div v-for="(product, index) in list">
-                    <show-products-component
-                        :product = product
-                        @deleteProduct="deleteProduct(product, index)"
-                    >
-                    </show-products-component>
-                </div>
-            <create-products-component
-                @save="(product)=>storeProduct(product)"
-            >
-            </create-products-component>
+            <div v-for="(product, index) in list">
+                <show-products-component
+                    :product = product
+                    @deleteProduct="deleteProduct(product, index)"
+                >
+                </show-products-component>
+            </div>
+            <div class="d-flex justify-content-center">
+                <button @click="showCreateProduct = true" class="btn btn-success">Register Product</button>
+            </div>
+            <teleport to="body">
+                <create-products-component
+                    :show = "showCreateProduct"
+                    @close = "showCreateProduct = false"
+                    @save="(product)=>storeProduct(product)"
+                >
+                </create-products-component>
+            </teleport>
         </div>
     </div>
 </template>
