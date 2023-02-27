@@ -17,7 +17,7 @@
                     .then(response=>{
                         this.isEditing = false
                     })
-            }
+            },
         }
     }
 </script>
@@ -29,8 +29,8 @@
                 <div class="card">
                     <div class="card-header">
                         <button @click="$emit('deleteProduct')" class="btn btn-sm btn-danger me-2 float-end">Delete</button>
-                        <button @click="isEditing = true" class="btn btn-sm btn-warning me-2 float-end">Edit</button>
                         <button class="btn btn-sm btn-info me-2 float-end">Notes</button>
+                        <button @click="isEditing = true" class="btn btn-sm btn-warning me-2 float-end">Edit</button>
 
                         <span v-if="(!isEditing)">{{ product.name }}</span>
                         <div v-if="isEditing">

@@ -33,11 +33,11 @@ class ProductController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the notes from the specified resource.
      */
-    public function notes(Product $product)
+    public function notes()
     {
-        //
+        return view('products.notes');
     }
 
     /**
