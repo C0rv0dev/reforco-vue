@@ -24,8 +24,6 @@ app.component('create-products-component', CreateProductsComponent);
 import ListProductsComponent from './components/ListProductsComponent.vue';
 app.component('list-products-component', ListProductsComponent);
 
-import ProductNotesComponent from './components/ProductNotesComponent.vue';
-app.component('product-notes-component', ProductNotesComponent);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

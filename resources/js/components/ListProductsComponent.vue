@@ -46,7 +46,7 @@
             </div>
             <teleport to="body">
                 <create-products-component
-                    :show = "showCreateProduct"
+                    :show = showCreateProduct
                     @close = "showCreateProduct = false"
                     @save="(product)=>storeProduct(product)"
                 >
