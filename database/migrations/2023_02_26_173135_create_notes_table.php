@@ -19,7 +19,7 @@ return new class extends Migration
                 ->onUpdate('CASCADE')
                 ->onDelete('CASCADE');
 
-            $table->string('content');
+            $table->text('content');
 
             $table->timestamps();
         });

@@ -1,12 +1,13 @@
 <script>
     export default {
 
-        props: ['products'],
+        props: ['products', 'notes'],
 
         data: function()
         {
             return {
                 list: this.products,
+                noteList: this.notes,
                 showCreateProduct: false,
                 showList: true,
                 selectedProduct: ''
@@ -18,6 +19,11 @@
             storeProduct(product)
             {
                 this.list.push(product)
+            },
+
+            storeNote(note)
+            {
+                this.noteList.push(note)
             },
 
             deleteProduct(product, index)
@@ -47,12 +53,12 @@
                 <label for="input" class="m-2"><font-awesome-icon icon="fa-solid fa-magnifying-glass"></font-awesome-icon></label>
             </div>
         
-            <div v-for="(product, index) in list">           
+            <div v-for="(product, index) in list">  
                 <div>
                     <show-products-component
+                        :notes = noteList
                         :product = product
-                        :url = "`/products/${product.id}/notes`"
-                        @notes = "(`/products/${product.id}/notes`)"
+                        @saveNote = "(note)=>storeNote(note)"
                         @deleteProduct="deleteProduct(product, index)">
                     </show-products-component>    
                 </div>

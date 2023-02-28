@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NoteController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,7 @@ Route::get('/products', [ProductController::class, 'index'])->name('showProducts
 Route::get('/products/{product}/notes', [ProductController::class, 'notes'])->name('showNotes');
 
 Route::post('/products', [ProductController::class, 'store'])->name('storeProducts');
+Route::post('/products/{product}/notes', [NoteController::class, 'store'])->name('storeNotes');
 
 Route::put('/products/{product}', [ProductController::class, 'update'])->name('updateProduct');
 Route::delete('/products/{product}', [ProductController::class, 'delete'])->name('deleteProduct');
