@@ -7,7 +7,9 @@
         {
             return {
                 list: this.products,
-                showCreateProduct: false
+                showCreateProduct: false,
+                showList: true,
+                selectedProduct: ''
             }
         },
 
@@ -27,6 +29,7 @@
                         })
                 }
             },
+            
         }
     }
 </script>
@@ -34,19 +37,30 @@
 <template>
     <div class="container mt-3">
         <div class="row justify-content-center">
+            
+            <div class="d-flex justify-content-center mb-3">
+                <input type="text" class="w-50 form-control" v-model="selectedProduct">
+                <label for="input" class="m-2"><font-awesome-icon icon="fa-solid fa-magnifying-glass"></font-awesome-icon></label>
+            </div>
+        
+            <div v-for="(product, index) in list">           
+                <div v-if="selectedProduct == ''">
+                    <show-products-component
+                        :product = product
+                        @deleteProduct="deleteProduct(product, index)">
+                    </show-products-component>    
+                </div>
 
-            <div class="d-flex justify-content-center">
-                <input class="form-control w-75 mb-3 float-end" placeholder="Search" type="text">
-                <button class="btn btn-primary btn-sm"><font-awesome-icon icon="fa-solid fa-magnifying-glass"></font-awesome-icon></button>
+                <div v-if="product.name == selectedProduct">
+                    <show-products-component
+                        :product = product
+                        @deleteProduct="deleteProduct(product, index)"
+                        @clear="selectedProduct = ''">
+                    </show-products-component>
+                </div>
+
             </div>
 
-            <div v-for="(product, index) in list">
-                <show-products-component
-                    :product = product
-                    @deleteProduct="deleteProduct(product, index)"
-                >
-                </show-products-component>
-            </div>
             <div class="d-flex justify-content-center">
                 <button @click="showCreateProduct = true" class="btn btn-success">
                     <font-awesome-icon icon="fa-solid fa-plus"></font-awesome-icon> 
