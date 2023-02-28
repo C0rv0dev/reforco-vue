@@ -5,6 +5,15 @@
  */
 
 import './bootstrap';
+
+
+/** Core */
+import { library } from '@fortawesome/fontawesome-svg-core';
+/** Component */
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+/** Icons */
+import { faFloppyDisk, faTrash, faEdit, faMagnifyingGlass, faPlus, faXmark } from '@fortawesome/free-solid-svg-icons';
+
 import { createApp } from 'vue';
 
 /**
@@ -13,7 +22,10 @@ import { createApp } from 'vue';
  * to use in your application's views. An example is included for you.
  */
 
-const app = createApp({});
+library.add(faMagnifyingGlass, faEdit, faTrash, faPlus, faXmark, faFloppyDisk)
+
+const app = createApp({})
+    .component('font-awesome-icon', FontAwesomeIcon);
 
 import ShowProductsComponent from './components/ShowProductsComponent.vue';
 app.component('show-products-component', ShowProductsComponent);

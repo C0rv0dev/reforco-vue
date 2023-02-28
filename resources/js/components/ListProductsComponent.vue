@@ -34,6 +34,12 @@
 <template>
     <div class="container mt-3">
         <div class="row justify-content-center">
+
+            <div class="d-flex justify-content-center">
+                <input class="form-control w-75 mb-3 float-end" placeholder="Search" type="text">
+                <button class="btn btn-primary btn-sm"><font-awesome-icon icon="fa-solid fa-magnifying-glass"></font-awesome-icon></button>
+            </div>
+
             <div v-for="(product, index) in list">
                 <show-products-component
                     :product = product
@@ -42,7 +48,10 @@
                 </show-products-component>
             </div>
             <div class="d-flex justify-content-center">
-                <button @click="showCreateProduct = true" class="btn btn-success">Register Product</button>
+                <button @click="showCreateProduct = true" class="btn btn-success">
+                    <font-awesome-icon icon="fa-solid fa-plus"></font-awesome-icon> 
+                        Register Product
+                </button>
             </div>
             <teleport to="body">
                 <create-products-component
