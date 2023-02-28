@@ -12,7 +12,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 /** Component */
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 /** Icons */
-import { faFloppyDisk, faTrash, faEdit, faMagnifyingGlass, faPlus, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faFloppyDisk, faTrash, faEdit, faMagnifyingGlass, faPlus, faXmark, faNoteSticky } from '@fortawesome/free-solid-svg-icons';
 
 import { createApp } from 'vue';
 
@@ -22,7 +22,7 @@ import { createApp } from 'vue';
  * to use in your application's views. An example is included for you.
  */
 
-library.add(faMagnifyingGlass, faEdit, faTrash, faPlus, faXmark, faFloppyDisk)
+library.add(faMagnifyingGlass, faEdit, faTrash, faPlus, faXmark, faFloppyDisk, faNoteSticky)
 
 const app = createApp({})
     .component('font-awesome-icon', FontAwesomeIcon);
@@ -36,6 +36,8 @@ app.component('create-products-component', CreateProductsComponent);
 import ListProductsComponent from './components/ListProductsComponent.vue';
 app.component('list-products-component', ListProductsComponent);
 
+import NotesComponent from './components/NotesComponent.vue';
+app.component('notes-component', NotesComponent);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

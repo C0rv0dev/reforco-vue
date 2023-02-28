@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
+use App\Models\Note;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -14,8 +15,9 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $products = Product::all();
+        $notes = Note::all();
 
-        return view('products.index', compact('products'));
+        return view('products.index', compact('products', 'notes'));
     }
 
     /**
@@ -32,14 +34,6 @@ class ProductController extends Controller
         $product->save();
 
         return response()->json(compact('product'));
-    }
-
-    /**
-     * Display the notes from the specified resource.
-     */
-    public function notes()
-    {
-        return view('products.notes');
     }
 
     /**
