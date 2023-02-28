@@ -29,7 +29,11 @@
                         })
                 }
             },
-            
+
+            filterProducts()
+            {
+                this.list = this.products.filter(product => product.name.toLowerCase().search(this.selectedProduct.toLowerCase()) >= 0)
+            }
         }
     }
 </script>
@@ -39,26 +43,19 @@
         <div class="row justify-content-center">
             
             <div class="d-flex justify-content-center mb-3">
-                <input type="text" class="w-50 form-control" v-model="selectedProduct">
+                <input type="text" class="w-50 form-control" v-model="selectedProduct" @input="filterProducts()">
                 <label for="input" class="m-2"><font-awesome-icon icon="fa-solid fa-magnifying-glass"></font-awesome-icon></label>
             </div>
         
             <div v-for="(product, index) in list">           
-                <div v-if="selectedProduct == ''">
+                <div>
                     <show-products-component
                         :product = product
+                        :url = "`/products/${product.id}/notes`"
+                        @notes = "(`/products/${product.id}/notes`)"
                         @deleteProduct="deleteProduct(product, index)">
                     </show-products-component>    
                 </div>
-
-                <div v-if="product.name == selectedProduct">
-                    <show-products-component
-                        :product = product
-                        @deleteProduct="deleteProduct(product, index)"
-                        @clear="selectedProduct = ''">
-                    </show-products-component>
-                </div>
-
             </div>
 
             <div class="d-flex justify-content-center">

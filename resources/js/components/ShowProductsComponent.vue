@@ -1,6 +1,6 @@
 <script>
     export default {
-        props: ['product'],
+        props: ['product', 'url'],
 
         data: function ()
         {
@@ -19,6 +19,11 @@
                         this.isEditing = false
                     })
             },
+
+            gotoNotesPage()
+            {
+                window.location.href = this.url
+            }
         }
     }
 </script>
@@ -29,7 +34,9 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
+                        
                         <button @click="$emit('deleteProduct')" class="btn btn-sm btn-danger me-2 float-end"><font-awesome-icon icon="fa-solid fa-trash"></font-awesome-icon></button>
+                        <button @click="gotoNotesPage()" class="btn btn-sm btn-primary me-2 float-end"><font-awesome-icon icon="fa-solid fa-note-sticky"></font-awesome-icon> Notes</button>
                         <button @click="isEditing = true" class="btn btn-sm btn-warning me-2 float-end"><font-awesome-icon icon="fa-solid fa-edit"></font-awesome-icon> Edit</button>
 
                         <span v-if="(!isEditing)">{{ product.name }}</span>
