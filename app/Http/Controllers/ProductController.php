@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -10,9 +11,10 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $products = Product::all();
+
         return view('products.index', compact('products'));
     }
 
@@ -33,11 +35,11 @@ class ProductController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the notes from the specified resource.
      */
-    public function notes(Product $product)
+    public function notes()
     {
-        //
+        return view('products.notes');
     }
 
     /**

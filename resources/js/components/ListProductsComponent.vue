@@ -7,7 +7,9 @@
         {
             return {
                 list: this.products,
-                showCreateProduct: false
+                showCreateProduct: false,
+                showList: true,
+                selectedProduct: ''
             }
         },
 
@@ -27,6 +29,7 @@
                         })
                 }
             },
+            
         }
     }
 </script>
@@ -34,19 +37,39 @@
 <template>
     <div class="container mt-3">
         <div class="row justify-content-center">
-            <div v-for="(product, index) in list">
-                <show-products-component
-                    :product = product
-                    @deleteProduct="deleteProduct(product, index)"
-                >
-                </show-products-component>
+            
+            <div class="d-flex justify-content-center mb-3">
+                <input type="text" class="w-50 form-control" v-model="selectedProduct">
+                <label for="input" class="m-2"><font-awesome-icon icon="fa-solid fa-magnifying-glass"></font-awesome-icon></label>
             </div>
+        
+            <div v-for="(product, index) in list">           
+                <div v-if="selectedProduct == ''">
+                    <show-products-component
+                        :product = product
+                        @deleteProduct="deleteProduct(product, index)">
+                    </show-products-component>    
+                </div>
+
+                <div v-if="product.name == selectedProduct">
+                    <show-products-component
+                        :product = product
+                        @deleteProduct="deleteProduct(product, index)"
+                        @clear="selectedProduct = ''">
+                    </show-products-component>
+                </div>
+
+            </div>
+
             <div class="d-flex justify-content-center">
-                <button @click="showCreateProduct = true" class="btn btn-success">Register Product</button>
+                <button @click="showCreateProduct = true" class="btn btn-success">
+                    <font-awesome-icon icon="fa-solid fa-plus"></font-awesome-icon> 
+                        Register Product
+                </button>
             </div>
             <teleport to="body">
                 <create-products-component
-                    :show = "showCreateProduct"
+                    :show = showCreateProduct
                     @close = "showCreateProduct = false"
                     @save="(product)=>storeProduct(product)"
                 >

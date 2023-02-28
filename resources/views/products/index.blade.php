@@ -1,8 +1,11 @@
-@extends('layouts.app')
+@auth()
+    @extends('layouts.app')
 
-@section('content')
-    <list-products-component
-        :products = {{ $products->toJson() }}
-    >
-    </list-products-component>
-@endsection
+    @section('content')
+        <list-products-component
+            :products = {{ $products->toJson() }}   
+        >
+        </list-products-component>
+    @endsection
+    
+@endauth
